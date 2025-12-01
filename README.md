@@ -1,45 +1,75 @@
-# LexOrbital Template Documentation
+# 🇫🇷 LexOrbital Template Documentation | 🇬🇧 Documentation Template
 
-> **Template de documentation standardisé** pour tous les repositories de l'écosystème LexOrbital.
+> **Standardized bilingual documentation template** for all repositories in the LexOrbital ecosystem.
 
-## 🎯 Objectif
+---
 
-Ce repository fournit une **structure documentaire canonique** réutilisable dans tous les projets LexOrbital, garantissant :
+## 🌍 Language / Langue
 
-- ✅ **Cohérence** : même structure, mêmes conventions
-- ✅ **Qualité** : documentation professionnelle et complète
-- ✅ **Réutilisabilité** : templates adaptables à tout type de module
-- ✅ **Maintenabilité** : synchronisation facilitée entre repos
+- 🇫🇷 **[Documentation Française (complète)](./README-FR.md)** - Documentation technique complète
+- 🇬🇧 **English version below** - Professional showcase version
 
-## 📦 Contenu du Template
+---
 
-### Structure Documentaire
+## 🎯 Objective
+
+This repository provides a **canonical documentation structure** reusable across all LexOrbital projects, ensuring:
+
+- ✅ **Consistency**: same structure, same conventions
+- ✅ **Quality**: professional and complete documentation
+- ✅ **Reusability**: templates adaptable to any type of module
+- ✅ **Maintainability**: facilitated synchronization between repos
+- ✅ **Multi-language**: French OR English structure
+
+## 📦 Structure
+
+### Documentation Organization
 
 ```
 template/
-├── README-root.template.md       # Template README racine
-├── docs/                          # Structure /docs complète
-│   ├── index.template.md         # Hub de navigation
-│   ├── project/                  # Vue d'ensemble projet
-│   ├── architecture/             # Architecture technique
-│   ├── compliance/               # Conformité (RGPD, sécurité)
-│   ├── operations/               # Guides opérationnels
-│   ├── security/                 # Documentation sécurité
-│   ├── howto/                    # Guides pratiques
-│   ├── reference/                # Références techniques
-│   └── template/                 # Meta-documentation
-└── scripts/                       # Scripts d'automatisation
+├── README-root.template.md       # Root README template
+├── docs/
+│   ├── fr/                       # 🇫🇷 French documentation structure
+│   │   ├── index.md
+│   │   ├── project/
+│   │   ├── architecture/
+│   │   ├── compliance/
+│   │   ├── operations/
+│   │   ├── security/
+│   │   ├── howto/
+│   │   ├── reference/
+│   │   └── template/
+│   └── en/                       # 🇬🇧 English documentation structure
+│       ├── index.md
+│       ├── project/
+│       ├── architecture/
+│       ├── compliance/
+│       ├── operations/
+│       ├── security/
+│       ├── howto/
+│       └── reference/
+└── scripts/                      # Automation scripts
 ```
 
-### Scripts d'Automatisation
+### Language Strategy
 
-- `sync-docs-template.sh` - Synchronise la structure entre repos
-- `init-docs.sh` - Initialise la documentation dans un nouveau repo
-- `validate-docs.sh` - Valide la structure et la qualité
+**Choose ONE language per repository:**
 
-## 🚀 Utilisation
+**🇫🇷 French (`--language fr`):**
+- For French legal/compliance context
+- Complete technical documentation
+- CNIL/ANSSI standards
+- Example: infrastructure modules with French legal requirements
 
-### 1. Initialiser la documentation dans un nouveau repo
+**🇬🇧 English (`--language en`):**
+- For international projects
+- Standard for UI/API modules
+- Broader adoption
+- Example: open-source libraries, UI kits
+
+## 🚀 Usage
+
+### 1. Initialize French documentation in a new repo
 
 ```bash
 cd lexorbital-template-docs
@@ -49,83 +79,120 @@ cd lexorbital-template-docs
   --language fr
 ```
 
-### 2. Synchroniser la structure avec un repo existant
+### 2. Initialize English documentation
+
+```bash
+./scripts/init-docs.sh \
+  --target ../lexorbital-module-xyz \
+  --type api \
+  --language en
+```
+
+### 3. Synchronize structure with an existing repo
 
 ```bash
 ./scripts/sync-docs-template.sh \
   --source . \
   --target ../lexorbital-module-server \
-  --mode structure \
-  --dry-run
+  --mode content \
+  --language fr
 ```
 
-### 3. Valider la documentation d'un repo
+### 4. Validate documentation
 
 ```bash
 ./scripts/validate-docs.sh --target ../lexorbital-module-server
 ```
 
-## 📋 Principes de la Structure
+## 📋 Structure Principles
 
-### Sans Numérotation
+### Without Numbering
 
-❌ **Éviter :** `01-installation.md`, `02-deployment.md`  
-✅ **Préférer :** `installation.md`, `deployment.md`
+❌ **Avoid:** `01-installation.md`, `02-deployment.md`  
+✅ **Prefer:** `installation.md`, `deployment.md`
 
-**Pourquoi ?** La numérotation crée de la rigidité et rend les renommages difficiles. La navigation se fait par un `index.md` bien structuré.
+**Why?** Numbering creates rigidity and makes renaming difficult. Navigation is done through a well-structured `index.md`.
 
-### Organisation Sémantique
+### Semantic Organization
 
-Les dossiers sont organisés par **type de contenu** :
+Folders are organized by **content type**:
 
-- `project/` - Vision, stratégie, décisions
-- `architecture/` - Design technique, diagrammes
-- `compliance/` - Conformité légale et standards
-- `operations/` - Guides déploiement et maintenance
-- `security/` - Sécurité et durcissement
-- `howto/` - Tutoriels pratiques
-- `reference/` - Documentation de référence
+- `project/` - Vision, strategy, decisions
+- `architecture/` - Technical design, diagrams
+- `compliance/` - Legal compliance and standards
+- `operations/` - Deployment and maintenance guides
+- `security/` - Security and hardening
+- `howto/` - Practical tutorials
+- `reference/` - Reference documentation
 
-### Navigation par Persona
+### Persona-Based Navigation
 
-Le fichier `docs/index.md` organise la navigation par profil utilisateur :
+The `docs/{fr|en}/index.md` file organizes navigation by user profile:
 
-- 👨‍💼 **Décideurs / Recruteurs** → Vue d'ensemble, architecture, conformité
-- 👨‍💻 **Développeurs** → Setup, contribution, troubleshooting
-- 🔧 **DevOps / SysAdmins** → Installation, déploiement, maintenance
-- 🔒 **Sécurité / Compliance** → Audits, standards, RGPD
+- 👨‍💼 **Decision Makers / Recruiters** → Overview, architecture, compliance
+- 👨‍💻 **Developers** → Setup, contribution, troubleshooting
+- 🔧 **DevOps / SysAdmins** → Installation, deployment, maintenance
+- 🔒 **Security / Compliance** → Audits, standards, GDPR
 
-## 📖 Documentation du Template
+## 🌍 Which Language to Choose?
 
-- [Guide de style](./template/docs/template/style-guide.md)
-- [Structure documentaire](./template/docs/template/docs-structure.md)
-- [Exemples d'adaptation](./docs/examples.md)
+### French (`--language fr`)
 
-## 🔄 Synchronisation Multi-Repo
+**Use for:**
+- Infrastructure modules with French legal context
+- RGPD/CNIL compliance requirements
+- Server/backend projects in French context
 
-Ce template peut être synchronisé avec plusieurs repos via :
+**Example repos:**
+- lexorbital-module-server (French legal compliance)
+- Backend services with CNIL requirements
 
-1. **Git subtree** (recommandé pour contenu figé)
-2. **Scripts de sync** (recommandé pour structure évolutive)
+### English (`--language en`)
 
-Voir la [documentation de synchronisation](./docs/synchronization.md) pour plus de détails.
+**Use for:**
+- UI/Frontend modules (international standard)
+- API/Backend with international audience
+- Open-source libraries
+- CLI tools
 
-## 🎯 Repositories Utilisant ce Template
+**Example repos:**
+- lexorbital-module-ui-kit (UI standard)
+- API modules for international use
 
-- [lexorbital-module-server](https://github.com/YohanGH/lexorbital-module-server) - Module infrastructure serveur
-- [lexorbital-core](https://github.com/YohanGH/lexorbital-core) - Meta-Kernel LexOrbital
-- [lexorbital-module-ui-kit](https://github.com/YohanGH/lexorbital-module-ui-kit) - Kit UI LexOrbital
+## 📖 Template Documentation
 
-## 🤝 Contribution
+- [Style guide](./template/docs/fr/template/style-guide.md) 🇫🇷
+- [Documentation structure](./template/docs/fr/template/docs-structure.md) 🇫🇷
+- [Bilingual strategy](./docs/i18n-strategy.md) 🇫🇷🇬🇧
 
-Pour contribuer au template :
+## 🔄 Multi-Repo Synchronization
 
-1. **Respecter les conventions** définies dans le style guide
-2. **Tester les changements** sur au moins 2 repos
-3. **Documenter les modifications** dans le CHANGELOG
-4. **Créer une PR** avec description claire
+This template can be synchronized with multiple repos via:
 
-Voir [CONTRIBUTING.md](./CONTRIBUTING.md) pour les détails.
+1. **Git subtree** (recommended for static content)
+2. **Sync scripts** (recommended for evolving structure)
+
+Scripts support:
+- `--language fr` - French only (default)
+- `--language en` - English only
+
+## 🎯 Repositories Using This Template
+
+- [lexorbital-module-server](https://github.com/YohanGH/lexorbital-module-server) 🇫🇷 - Server infrastructure module
+- [lexorbital-core](https://github.com/YohanGH/lexorbital-core) 🇫🇷 - LexOrbital Meta-Kernel
+- [lexorbital-module-ui-kit](https://github.com/YohanGH/lexorbital-module-ui-kit) 🇬🇧 - LexOrbital UI Kit
+
+## 🤝 Contributing
+
+To contribute to the template:
+
+1. **Respect conventions** defined in the style guide
+2. **Test changes** on at least 2 repos
+3. **Document modifications** in the CHANGELOG
+4. **Create a PR** with a clear description
+5. **For translations:** Update both FR and EN if applicable
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
 ## 📄 License
 
@@ -133,6 +200,15 @@ Voir [CONTRIBUTING.md](./CONTRIBUTING.md) pour les détails.
 
 ---
 
-**Version :** 1.0.0  
-**Dernière mise à jour :** 2025-12-01
+**Version:** 1.0.0  
+**Last updated:** 2025-12-01
 
+---
+
+<div align="center">
+
+**Made with 🌍 by the LexOrbital community**
+
+[🇫🇷 Docs FR](./template/docs/fr/) • [🇬🇧 Docs EN](./template/docs/en/) • [Contributing](./CONTRIBUTING.md)
+
+</div>
