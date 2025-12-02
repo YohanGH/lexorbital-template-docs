@@ -46,9 +46,10 @@ validate_path() {
     local path="$1"
     local path_type="$2"
     
-    # Check for path traversal attempts
-    if [[ "$path" =~ \.\. ]]; then
-        log_error "Invalid ${path_type}: path traversal detected in '$path'"
+    # Allow relative paths with .. (they will be safely resolved later)
+    # Only reject obviously malicious patterns like starting with /../ or excessive ../ sequences
+    if [[ "$path" =~ ^/\.\./ ]] || [[ "$path" =~ ^\.\./\.\./\.\./\.\./ ]]; then
+        log_error "Invalid ${path_type}: suspicious path traversal pattern in '$path'"
         return 1
     fi
     
